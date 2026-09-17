@@ -7,12 +7,12 @@
     <title>Mounir | Data Scientist & Machine Learning</title>
 
     <meta name="description"
-          content="Mounir's Data Science and Machine Learning portfolio. Explore projects in predictive modeling, analytics, and business intelligence.">
+          content="Mounir's Data Science and Machine Learning portfolio. Explore projects in predictive modeling, machine learning, statistical analysis, and business analytics.">
 
     <style>
 
         /* =========================
-           Global Styles
+           Global
         ========================= */
 
         * {
@@ -54,10 +54,10 @@
             width: 100%;
             z-index: 1000;
 
-            background: rgba(10, 10, 10, 0.82);
+            background: rgba(10, 10, 10, 0.86);
             backdrop-filter: blur(14px);
 
-            border-bottom: 1px solid rgba(255,255,255,0.07);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
         }
 
         .nav-inner {
@@ -75,7 +75,7 @@
         }
 
         .logo span {
-            color: #7c8cff;
+            color: #858fff;
         }
 
         .nav-links {
@@ -205,7 +205,7 @@
         }
 
         /* =========================
-           Section
+           Sections
         ========================= */
 
         section {
@@ -254,7 +254,7 @@
 
             padding: 32px;
 
-            min-height: 330px;
+            min-height: 340px;
 
             border: 1px solid #222;
             border-radius: 16px;
@@ -262,8 +262,8 @@
             background:
                 linear-gradient(
                     145deg,
-                    rgba(255,255,255,0.035),
-                    rgba(255,255,255,0.01)
+                    rgba(255, 255, 255, 0.035),
+                    rgba(255, 255, 255, 0.01)
                 );
 
             transition: 0.3s;
@@ -339,6 +339,8 @@
             color: #858fff;
             font-size: 14px;
             font-weight: 600;
+
+            z-index: 2;
         }
 
         /* =========================
@@ -393,4 +395,714 @@
             margin-bottom: 18px;
         }
 
-        .info-list
+        .info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .info-item {
+            padding-bottom: 18px;
+
+            border-bottom: 1px solid #222;
+        }
+
+        .info-item span {
+            display: block;
+
+            color: #666;
+            font-size: 12px;
+
+            text-transform: uppercase;
+            letter-spacing: 1px;
+
+            margin-bottom: 5px;
+        }
+
+        .info-item strong {
+            color: #e5e5e5;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        /* =========================
+           Services
+        ========================= */
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .service {
+            padding: 28px;
+
+            border: 1px solid #222;
+            border-radius: 14px;
+
+            background: #0d0d0d;
+
+            transition: 0.3s;
+        }
+
+        .service:hover {
+            transform: translateY(-4px);
+            border-color: #343434;
+        }
+
+        .service-number {
+            color: #858fff;
+            font-size: 13px;
+            font-weight: 700;
+
+            margin-bottom: 22px;
+        }
+
+        .service h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .service p {
+            color: #8f8f8f;
+            font-size: 14px;
+        }
+
+        /* =========================
+           Contact
+        ========================= */
+
+        .contact {
+            text-align: center;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(85, 100, 255, 0.09),
+                    transparent 38%
+                );
+        }
+
+        .contact-content {
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .contact .section-description {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        /* =========================
+           Footer
+        ========================= */
+
+        footer {
+            padding: 28px 0;
+
+            border-top: 1px solid #1d1d1d;
+
+            color: #666;
+            font-size: 13px;
+
+            text-align: center;
+        }
+
+        /* =========================
+           Responsive
+        ========================= */
+
+        @media (max-width: 850px) {
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 45px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .nav-inner {
+                height: 64px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            section {
+                padding: 80px 0;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+                letter-spacing: -2.5px;
+            }
+
+            .hero-description {
+                font-size: 16px;
+            }
+
+            .project-card {
+                padding: 25px;
+                min-height: 350px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         Navigation
+    ========================= -->
+
+    <nav>
+        <div class="container nav-inner">
+
+            <a href="#home" class="logo">
+                Mounir<span>.</span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+        </div>
+    </nav>
+
+
+    <!-- =========================
+         Hero
+    ========================= -->
+
+    <main>
+
+        <section class="hero" id="home">
+
+            <div class="container">
+
+                <div class="hero-content">
+
+                    <div class="eyebrow">
+                        <span class="status-dot"></span>
+                        Data Science & Machine Learning
+                    </div>
+
+                    <h1>
+                        Turning data into
+                        <span>useful decisions.</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        I'm Mounir, a data science and machine learning
+                        practitioner focused on predictive modeling,
+                        statistical analysis, and solving practical
+                        business problems with data.
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <a href="#projects" class="btn btn-primary">
+                            Explore Projects
+                        </a>
+
+                        <a href="#contact" class="btn btn-secondary">
+                            Get in Touch
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             Projects
+        ========================= -->
+
+        <section class="projects" id="projects">
+
+            <div class="container">
+
+                <div class="section-label">
+                    Selected Work
+                </div>
+
+                <h2 class="section-title">
+                    Projects
+                </h2>
+
+                <p class="section-description">
+                    A selection of data science and machine learning
+                    projects covering classification, regression,
+                    predictive modeling, and business analytics.
+                </p>
+
+
+                <div class="project-grid">
+
+                    <!-- TikTok -->
+
+                    <article class="project-card">
+
+                        <div class="project-number">
+                            01 / CLASSIFICATION
+                        </div>
+
+                        <h3>
+                            TikTok Claims Classification
+                        </h3>
+
+                        <p>
+                            Built a machine learning classification
+                            workflow to distinguish claims from opinions,
+                            including exploratory analysis, statistical
+                            testing, feature engineering, model comparison,
+                            and final evaluation.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">Machine Learning</span>
+                            <span class="tag">NLP</span>
+                            <span class="tag">Classification</span>
+                        </div>
+
+                        <a href="#" class="project-link">
+                            View Case Study →
+                        </a>
+
+                    </article>
+
+
+                    <!-- Waze -->
+
+                    <article class="project-card">
+
+                        <div class="project-number">
+                            02 / PREDICTIVE MODELING
+                        </div>
+
+                        <h3>
+                            Waze User Churn
+                        </h3>
+
+                        <p>
+                            Developed a predictive workflow to identify
+                            users at risk of churn, comparing tree-based
+                            models and tuning the classification threshold
+                            to improve recall.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">XGBoost</span>
+                            <span class="tag">Random Forest</span>
+                            <span class="tag">Churn</span>
+                        </div>
+
+                        <a href="#" class="project-link">
+                            View Case Study →
+                        </a>
+
+                    </article>
+
+
+                    <!-- Automatidata -->
+
+                    <article class="project-card">
+
+                        <div class="project-number">
+                            03 / REGRESSION + CLASSIFICATION
+                        </div>
+
+                        <h3>
+                            Automatidata
+                        </h3>
+
+                        <p>
+                            An end-to-end analytics project covering taxi
+                            fare prediction and generous tipping
+                            classification, with statistical analysis,
+                            feature engineering, model comparison,
+                            and error analysis.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">Regression</span>
+                            <span class="tag">Classification</span>
+                            <span class="tag">Feature Engineering</span>
+                            <span class="tag">Python</span>
+                        </div>
+
+                        <a href="#" class="project-link">
+                            View Case Study →
+                        </a>
+
+                    </article>
+
+
+                    <!-- Salifort -->
+
+                    <article class="project-card">
+
+                        <div class="project-number">
+                            04 / HR ANALYTICS
+                        </div>
+
+                        <h3>
+                            Salifort Motors
+                        </h3>
+
+                        <p>
+                            Built an employee turnover prediction workflow
+                            combining exploratory analysis, feature
+                            engineering, model comparison, and validation
+                            based model selection.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">HR Analytics</span>
+                            <span class="tag">Random Forest</span>
+                            <span class="tag">Classification</span>
+                            <span class="tag">Python</span>
+                        </div>
+
+                        <a href="#" class="project-link">
+                            View Case Study →
+                        </a>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             Skills
+        ========================= -->
+
+        <section id="skills">
+
+            <div class="container">
+
+                <div class="section-label">
+                    Technical Toolkit
+                </div>
+
+                <h2 class="section-title">
+                    Skills
+                </h2>
+
+                <p class="section-description">
+                    Tools and techniques I use to explore data, build
+                    predictive models, and communicate analytical results.
+                </p>
+
+
+                <div class="skills-grid">
+
+                    <div class="skill">Python</div>
+                    <div class="skill">Pandas</div>
+                    <div class="skill">NumPy</div>
+                    <div class="skill">Scikit-learn</div>
+
+                    <div class="skill">Machine Learning</div>
+                    <div class="skill">Statistical Analysis</div>
+                    <div class="skill">SQL</div>
+                    <div class="skill">Power BI</div>
+
+                    <div class="skill">Excel</div>
+                    <div class="skill">Data Visualization</div>
+                    <div class="skill">Feature Engineering</div>
+                    <div class="skill">Predictive Modeling</div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             About
+        ========================= -->
+
+        <section class="about" id="about">
+
+            <div class="container">
+
+                <div class="about-grid">
+
+                    <div>
+
+                        <div class="section-label">
+                            About
+                        </div>
+
+                        <h2 class="section-title">
+                            A data focused approach.
+                        </h2>
+
+                        <div class="about-text">
+
+                            <p>
+                                I'm Mounir, an Applied Chemistry student
+                                at Al-Azhar University with a strong focus
+                                on data science and machine learning.
+                            </p>
+
+                            <p>
+                                My work combines statistical thinking,
+                                programming, machine learning, and business
+                                problem solving to turn raw data into
+                                practical insights.
+                            </p>
+
+                            <p>
+                                I enjoy working on problems where analysis
+                                goes beyond creating charts and focuses on
+                                understanding the problem, evaluating
+                                evidence, and building useful predictive
+                                solutions.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info-list">
+
+                        <div class="info-item">
+                            <span>Focus</span>
+                            <strong>
+                                Data Science & Machine Learning
+                            </strong>
+                        </div>
+
+                        <div class="info-item">
+                            <span>Education</span>
+                            <strong>
+                                Applied Chemistry · Al-Azhar University
+                            </strong>
+                        </div>
+
+                        <div class="info-item">
+                            <span>Certification</span>
+                            <strong>
+                                Google Advanced Data Analytics
+                            </strong>
+                        </div>
+
+                        <div class="info-item">
+                            <span>Location</span>
+                            <strong>
+                                Egypt
+                            </strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             Services
+        ========================= -->
+
+        <section id="services">
+
+            <div class="container">
+
+                <div class="section-label">
+                    What I Do
+                </div>
+
+                <h2 class="section-title">
+                    Services
+                </h2>
+
+                <p class="section-description">
+                    Practical data solutions focused on understanding
+                    the problem and producing results that can support
+                    better decisions.
+                </p>
+
+
+                <div class="services-grid">
+
+                    <div class="service">
+
+                        <div class="service-number">
+                            01
+                        </div>
+
+                        <h3>
+                            Data Analysis
+                        </h3>
+
+                        <p>
+                            Clean, explore, and analyze datasets to uncover
+                            patterns, trends, relationships, and useful
+                            business insights.
+                        </p>
+
+                    </div>
+
+
+                    <div class="service">
+
+                        <div class="service-number">
+                            02
+                        </div>
+
+                        <h3>
+                            Machine Learning
+                        </h3>
+
+                        <p>
+                            Build and evaluate predictive models for
+                            classification, regression, and other
+                            practical machine learning problems.
+                        </p>
+
+                    </div>
+
+
+                    <div class="service">
+
+                        <div class="service-number">
+                            03
+                        </div>
+
+                        <h3>
+                            Data Visualization
+                        </h3>
+
+                        <p>
+                            Transform analytical results into clear
+                            dashboards and visualizations that make
+                            important information easier to understand.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             Contact
+        ========================= -->
+
+        <section class="contact" id="contact">
+
+            <div class="container">
+
+                <div class="contact-content">
+
+                    <div class="section-label">
+                        Contact
+                    </div>
+
+                    <h2 class="section-title">
+                        Have a data problem?
+                    </h2>
+
+                    <p class="section-description">
+                        I'm open to freelance projects, collaborations,
+                        and opportunities involving data analysis,
+                        machine learning, and predictive modeling.
+                    </p>
+
+
+                    <div class="contact-buttons">
+
+                        <!-- Replace these links later -->
+
+                        <a href="mailto:YOUR_EMAIL@example.com"
+                           class="btn btn-primary">
+                            Email Me
+                        </a>
+
+                        <a href="https://www.linkedin.com/"
+                           target="_blank"
+                           class="btn btn-secondary">
+                            LinkedIn
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         Footer
+    ========================= -->
+
+    <footer>
+
+        <div class="container">
+
+            © 2026 Mounir. Data Science & Machine Learning.
+
+        </div>
+
+    </footer>
+
+</body>
+</html>
