@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TikTok Claims Classification | Mounir</title>
+<link rel="stylesheet" href="../assets/css/project.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a class="logo" href="../index.html">Mounir</a>
+    <div class="nav-links">
+      <a href="#overview">Overview</a>
+      <a href="#approach">Approach</a>
+      <a href="#results">Results</a>
+      <a href="#limitations">Limitations</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <span class="eyebrow">01 · Machine Learning Classification</span>
+    <h1>TikTok Claims<br><span class="gradient">Classification</span></h1>
+    <p>
+      A portfolio case study exploring whether reported TikTok videos can be
+      classified as claims or opinions using engagement signals and
+      transcription-based text features.
+    </p>
+    <div class="actions">
+      <a class="btn primary" href="#results">View Results</a>
+      <a class="btn" href="../index.html">Back to Portfolio</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section class="section" id="overview">
+  <div class="container">
+    <h2>Business Problem</h2>
+    <p class="section-intro">
+      Large volumes of reported content can make manual review difficult to
+      prioritize. The analytical objective is to determine whether available
+      video, engagement, author, and transcription features contain enough
+      information to distinguish claims from opinions.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Objective</h3>
+        <p>Build and evaluate a model that classifies videos as claims or opinions and could support review prioritization.</p>
+      </div>
+      <div class="card">
+        <h3>Data Science Focus</h3>
+        <p>EDA, statistical analysis, feature engineering, text vectorization, supervised classification, model interpretation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="approach">
+  <div class="container">
+    <h2>Approach</h2>
+    <p class="section-intro">The workflow separates model development from final evaluation so the final test set remains unseen until model selection is complete.</p>
+
+    <div class="steps">
+      <div class="step"><div class="num">1</div><div><strong>Data Quality</strong><p>Inspected missing values, duplicates, variable types, and skewed engagement features. 298 incomplete records were removed because missingness affected the target and important predictors.</p></div></div>
+      <div class="step"><div class="num">2</div><div><strong>Exploratory Analysis</strong><p>Examined claim status, engagement behavior, author status, and transcription characteristics to identify useful predictive signals.</p></div></div>
+      <div class="step"><div class="num">3</div><div><strong>Statistical Analysis</strong><p>Welch's two-sample t-test was used to examine the difference in mean video views between verified and unverified accounts.</p></div></div>
+      <div class="step"><div class="num">4</div><div><strong>Feature Engineering</strong><p>Transcription text was converted into numerical features with CountVectorizer and combined with structured variables.</p></div></div>
+      <div class="step"><div class="num">5</div><div><strong>Modeling</strong><p>Random Forest and XGBoost were optimized and compared using validation data, with recall emphasized for identifying claims.</p></div></div>
+      <div class="step"><div class="num">6</div><div><strong>Final Evaluation</strong><p>The selected Random Forest was evaluated once on the held-out test set.</p></div></div>
+    </div>
+
+    <div class="card" style="margin-top:22px">
+      <h3>Tools</h3>
+      <span class="tag">Python</span>
+      <span class="tag">Pandas</span>
+      <span class="tag">NumPy</span>
+      <span class="tag">Scikit-learn</span>
+      <span class="tag">XGBoost</span>
+      <span class="tag">Matplotlib</span>
+      <span class="tag">NLP</span>
+      <span class="tag">CountVectorizer</span>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="results">
+  <div class="container">
+    <h2>Final Model Results</h2>
+    <p class="section-intro">The selected Random Forest was evaluated on an untouched test set of 3,817 observations.</p>
+
+    <div class="grid">
+      <div class="card"><div class="metric">99.95%</div><div class="metric-label">Accuracy</div></div>
+      <div class="card"><div class="metric">100.00%</div><div class="metric-label">Precision</div></div>
+      <div class="card"><div class="metric">99.90%</div><div class="metric-label">Recall</div></div>
+      <div class="card"><div class="metric">99.95%</div><div class="metric-label">F1 Score</div></div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Confusion Matrix</h3>
+        <p>
+          1,895 opinion videos were correctly classified as opinions.
+          1,920 claim videos were correctly classified as claims.
+          Only 2 claim videos were misclassified as opinions, with no opinion
+          videos incorrectly classified as claims.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Model Selection</h3>
+        <p>
+          Random Forest was selected using validation recall. XGBoost also
+          achieved very strong validation performance, but Random Forest made
+          fewer errors on the validation set.
+        </p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>Key model insight:</strong>
+      Engagement variables, especially video views and likes, had the highest
+      model-based feature importance. This describes how the model uses the
+      available data and should not be interpreted as a causal relationship.
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>Statistical Finding</h2>
+    <p class="section-intro">
+      The analysis also examined whether verification status was associated
+      with video view counts.
+    </p>
+    <div class="grid">
+      <div class="card">
+        <div class="metric">2.61 × 10⁻¹²⁰</div>
+        <div class="metric-label">Welch's t-test p-value</div>
+      </div>
+      <div class="card">
+        <h3>Interpretation</h3>
+        <p>
+          The test provides strong statistical evidence of a difference in mean
+          video views between verified and unverified accounts in this dataset.
+          The result is an association, not evidence of causation.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="limitations">
+  <div class="container">
+    <h2>Limitations & Next Steps</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Dataset limitation</h3>
+        <p>The dataset is simulated and created for educational purposes, so the reported performance should not be treated as evidence about real TikTok moderation systems.</p>
+      </div>
+      <div class="card">
+        <h3>Feature availability</h3>
+        <p>Engagement variables may become available only after a video has accumulated interactions. Their availability at the actual prediction time should be verified to avoid temporal leakage.</p>
+      </div>
+      <div class="card">
+        <h3>Validation before deployment</h3>
+        <p>Additional real-world data and independent evaluation would be required before considering production use.</p>
+      </div>
+      <div class="card">
+        <h3>Future analysis</h3>
+        <p>Additional signals such as user report history and author-level reporting patterns could be investigated to improve the modeling context.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>Project Takeaway</h2>
+    <p class="section-intro">
+      The available dataset contains a very strong predictive signal for
+      distinguishing claims from opinions. The main signal comes from
+      engagement-related variables, while the text features provide additional
+      information within the modeling pipeline.
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div>© 2026 Mounir · Data Science & Machine Learning Portfolio</div>
+  </div>
+</footer>
+
+</body>
+</html>
