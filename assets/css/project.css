@@ -79,132 +79,58 @@ h1{font-size:clamp(2.6rem,7vw,5.4rem);line-height:1.02;letter-spacing:-.055em;ma
   .grid{grid-template-columns:1fr}
   .hero{padding-top:65px}
 }
-<section class="section" id="files">
-  <div class="container">
-    <h2>Project Files</h2>
-    <p class="section-intro">
-      Explore the technical notebook, executive summary, and project proposal
-      for a deeper look at the analysis and modeling workflow.
-    </p>
+.analysis-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:20px;
+  margin-top:28px;
+}
 
-    <div class="grid">
-      <div class="card">
-        <h3>Technical Notebook</h3>
-        <p>
-          Full Jupyter Notebook containing the data preparation, analysis,
-          statistical testing, NLP pipeline, model development, and evaluation.
-        </p>
-        <a class="btn primary"
-           href="../project-files/tiktok/TikTok_Project.ipynb">
-          View Notebook
-        </a>
-      </div>
+.analysis-card{
+  overflow:hidden;
+  background:linear-gradient(180deg,rgba(17,26,45,.9),rgba(13,20,36,.9));
+  border:1px solid var(--line);
+  border-radius:16px;
+}
 
-      <div class="card">
-        <h3>Executive Summary</h3>
-        <p>
-          A concise summary of the business problem, methodology, key results,
-          limitations, and practical interpretation.
-        </p>
-        <a class="btn"
-           href="../project-files/tiktok/Executive_Summary.pdf"
-           target="_blank">
-          Open Summary
-        </a>
-      </div>
+.analysis-card img{
+  display:block;
+  width:100%;
+  height:280px;
+  object-fit:contain;
+  background:#080d18;
+  padding:12px;
+}
 
-      <div class="card">
-        <h3>Job Proposal</h3>
-        <p>
-          A freelancing-focused proposal showing how the project demonstrates
-          an end-to-end data science and machine learning workflow.
-        </p>
-        <a class="btn"
-           href="../project-files/tiktok/Job_Proposal.pdf"
-           target="_blank">
-          Open Proposal
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
+.analysis-caption{
+  padding:18px 20px 20px;
+  border-top:1px solid var(--line);
+}
 
-<section class="section" id="analysis">
-  <div class="container">
-    <h2>Selected Analysis</h2>
-    <p class="section-intro">
-      A selection of visual outputs from the project, highlighting the
-      analytical workflow and final model interpretation.
-    </p>
+.analysis-caption h3{
+  margin:0 0 7px;
+  font-size:1.05rem;
+}
 
-    <div class="analysis-grid">
+.analysis-caption p{
+  margin:0;
+  color:var(--muted);
+  font-size:.92rem;
+}
 
-      <div class="analysis-card">
-        <img
-          src="../project-files/tiktok/images/transcription_length_distribution.png"
-          alt="Transcription length distribution">
-        <div class="analysis-caption">
-          <h3>Transcription Length Distribution</h3>
-          <p>
-            Distribution of transcription length across claim and opinion
-            videos.
-          </p>
-        </div>
-      </div>
+.analysis-card:hover{
+  transform:translateY(-3px);
+  border-color:rgba(78,161,255,.25);
+  transition:.2s ease;
+}
 
-      <div class="analysis-card">
-        <img
-          src="../project-files/tiktok/images/correlation_matrix.png"
-          alt="Correlation matrix">
-        <div class="analysis-caption">
-          <h3>Correlation Analysis</h3>
-          <p>
-            Correlation structure among selected numerical variables used to
-            understand relationships and potential redundancy.
-          </p>
-        </div>
-      </div>
+@media(max-width:720px){
+  .analysis-grid{
+    grid-template-columns:1fr;
+  }
 
-      <div class="analysis-card">
-        <img
-          src="../project-files/tiktok/images/feature_importance.png"
-          alt="Feature importance">
-        <div class="analysis-caption">
-          <h3>Feature Importance</h3>
-          <p>
-            Model-based feature importance showing which available signals
-            contributed most to the Random Forest predictions.
-          </p>
-        </div>
-      </div>
-
-      <div class="analysis-card">
-        <img
-          src="../project-files/tiktok/images/final_confusion_matrix.png"
-          alt="Final confusion matrix">
-        <div class="analysis-caption">
-          <h3>Final Confusion Matrix</h3>
-          <p>
-            Final test-set classification results for the selected Random
-            Forest model.
-          </p>
-        </div>
-      </div>
-
-      <div class="analysis-card">
-        <img
-          src="../project-files/tiktok/images/code_text_vectorization.png"
-          alt="Text vectorization code">
-        <div class="analysis-caption">
-          <h3>Text Vectorization Pipeline</h3>
-          <p>
-            Code showing the text vectorization workflow, with the vectorizer
-            fitted on training text before transforming validation and test
-            data.
-          </p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
+  .analysis-card img{
+    height:auto;
+    max-height:320px;
+  }
+}
