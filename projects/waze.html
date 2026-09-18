@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Waze User Churn Prediction | Mounir</title>
+<link rel="stylesheet" href="../assets/css/project.css">
+<link rel="stylesheet" href="../assets/css/waze.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a class="logo" href="../index.html">Mounir</a>
+    <div class="nav-links">
+      <a href="#overview">Overview</a>
+      <a href="#workflow">Workflow</a>
+      <a href="#results">Results</a>
+      <a href="#visuals">Visuals</a>
+      <a href="#files">Files</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <span class="eyebrow">02 · Machine Learning Classification</span>
+    <h1>Waze User<br><span class="gradient">Churn Prediction</span></h1>
+    <p>
+      A portfolio case study focused on identifying monthly user churn,
+      engineering behavioral features, comparing classification models,
+      and examining how the operating threshold changes recall and precision.
+    </p>
+    <div class="actions">
+      <a class="btn primary" href="#results">View Results</a>
+      <a class="btn" href="../index.html">Back to Portfolio</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="section" id="overview">
+  <div class="container">
+    <h2>Business Problem</h2>
+    <p class="section-intro">
+      A navigation product may want to identify users who could churn so that
+      retention efforts can be prioritized. The analytical task here is to
+      model monthly churn from available user-level behavior and understand
+      how much predictive signal the dataset actually contains.
+    </p>
+    <div class="stat-grid">
+      <div class="stat"><div class="metric">14,999</div><small>Original records</small></div>
+      <div class="stat"><div class="metric">14,299</div><small>Labeled users modeled</small></div>
+      <div class="stat"><div class="metric">17.74%</div><small>Observed churn rate</small></div>
+      <div class="stat"><div class="metric">0</div><small>Duplicate rows</small></div>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <h3>Objective</h3>
+        <p>Build a classifier that can distinguish retained users from churned users and evaluate the trade-off between catching churners and limiting false positives.</p>
+      </div>
+      <div class="card">
+        <h3>Important Context</h3>
+        <p>The scenario and dataset are educational and fictitious. The reported performance should not be interpreted as real Waze product performance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="workflow">
+  <div class="container">
+    <h2>Analytical Workflow</h2>
+    <p class="section-intro">The workflow keeps model development, threshold selection, and final evaluation separate.</p>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><div><strong>Data Quality</strong><p>Removed 700 records with missing churn labels and verified that the labeled dataset contained no duplicate rows.</p></div></div>
+      <div class="step"><div class="num">2</div><div><strong>Exploratory Analysis</strong><p>Examined churn distribution, device behavior, activity patterns, and user engagement characteristics.</p></div></div>
+      <div class="step"><div class="num">3</div><div><strong>Statistical Testing</strong><p>Used Welch's two-sample t-test to examine the difference in average monthly drives between iPhone and Android users.</p></div></div>
+      <div class="step"><div class="num">4</div><div><strong>Feature Engineering</strong><p>Created behavioral ratios and indicators including kilometers per driving day, sessions per day, kilometers per drive, and a professional-driver indicator.</p></div></div>
+      <div class="step"><div class="num">5</div><div><strong>Model Development</strong><p>Compared Logistic Regression with Random Forest and XGBoost using a stratified train, validation, and test workflow. Outlier caps were learned from training data only.</p></div></div>
+      <div class="step"><div class="num">6</div><div><strong>Threshold Analysis</strong><p>The XGBoost operating threshold was selected on validation data for a target recall of 0.50 and then frozen before final test evaluation.</p></div></div>
+      <div class="step"><div class="num">7</div><div><strong>Final Evaluation</strong><p>The untouched test set was evaluated at both the default 0.50 threshold and the validation-selected 0.223 threshold.</p></div></div>
+    </div>
+    <div class="card" style="margin-top:22px">
+      <h3>Tools</h3>
+      <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">NumPy</span>
+      <span class="tag">Scikit-learn</span><span class="tag">XGBoost</span><span class="tag">Matplotlib</span>
+      <span class="tag">Statistical Testing</span><span class="tag">Feature Engineering</span>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="results">
+  <div class="container">
+    <h2>Final Model Results</h2>
+    <p class="section-intro">XGBoost was selected among the ensemble models using validation recall. The final test was then evaluated after the operating threshold had been fixed.</p>
+    <div class="grid">
+      <div class="card"><h3>At default threshold · 0.50</h3><div class="metric">17.16%</div><div class="metric-label">Churn recall</div><p style="margin-top:12px">Precision 45.55% · F1 24.93% · ROC AUC 0.7318</p></div>
+      <div class="card"><h3>At validation-selected threshold · 0.223</h3><div class="metric accent">52.47%</div><div class="metric-label">Churn recall</div><p style="margin-top:12px">Precision 35.95% · F1 42.66% · Accuracy 75.00%</p></div>
+    </div>
+    <div class="callout">
+      <strong>What changed?</strong> Lowering the threshold substantially increased the share of churned users detected, while precision and overall accuracy decreased. The 0.223 threshold is an analytical operating point selected from validation data, not a production recommendation because the business costs of false positives and false negatives were not specified.
+    </div>
+    <div class="grid">
+      <div class="card">
+        <h3>Final test at 0.223</h3>
+        <p>For the churn class, precision was 0.36, recall was 0.52, and F1 was 0.43. The retained class had precision 0.89 and recall 0.80.</p>
+      </div>
+      <div class="card">
+        <h3>Model selection</h3>
+        <p>XGBoost achieved validation recall of 0.1381 versus 0.1085 for Random Forest and 0.0986 for Logistic Regression at the default threshold. It was selected among the ensemble models by validation recall.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>Statistical Finding</h2>
+    <p class="section-intro">The analysis also tested whether average monthly driving differed by device type.</p>
+    <div class="grid">
+      <div class="card"><div class="metric">0.093651</div><div class="metric-label">Welch's t-test p-value</div></div>
+      <div class="card"><h3>Interpretation</h3><p>The test did not provide enough evidence at the 0.05 significance level to reject the null hypothesis of equal mean monthly drives between iPhone and Android users in this dataset. This is a statistical association test, not a causal analysis.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="visuals">
+  <div class="container">
+    <h2>Selected Visuals</h2>
+    <p class="section-intro">A few of the most useful outputs from the technical notebook.</p>
+    <div class="chart-grid">
+      <figure class="card visual"><img src="../project-files/waze/images/churn_distribution.png" alt="Waze churn distribution"><figcaption>Churn distribution across labeled users.</figcaption></figure>
+      <figure class="card visual"><img src="../project-files/waze/images/churn_rate_by_activity_days.png" alt="Churn rate by activity days"><figcaption>Observed churn rate across activity-day groups.</figcaption></figure>
+      <figure class="card visual"><img src="../project-files/waze/images/validation_precision_recall_curve.png" alt="Validation precision recall curve"><figcaption>Validation precision-recall behavior used to inspect threshold trade-offs.</figcaption></figure>
+      <figure class="card visual"><img src="../project-files/waze/images/final_confusion_matrix.png" alt="Final confusion matrix"><figcaption>Final test confusion matrix at the selected 0.223 threshold.</figcaption></figure>
+      <figure class="card visual"><img src="../project-files/waze/images/final_roc_curve.png" alt="Final ROC curve"><figcaption>Final test ROC curve with ROC AUC of 0.7318.</figcaption></figure>
+      <figure class="card visual"><img src="../project-files/waze/images/feature_importance.png" alt="XGBoost feature importance"><figcaption>XGBoost model-based feature importance. Importance is not causal evidence.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>What the Model Learned</h2>
+    <p class="section-intro">The strongest model-based signals included activity duration, onboarding age, driving behavior, navigation behavior, and engineered usage ratios.</p>
+    <div class="grid">
+      <div class="card"><h3>Top signal</h3><div class="metric">24.95%</div><div class="metric-label">Activity days feature importance</div><p style="margin-top:10px">Activity days had the largest XGBoost feature importance in the notebook.</p></div>
+      <div class="card"><h3>Next signals</h3><p>Other prominent features included days after onboarding, driving days, favorite-location navigation, total sessions per day, sessions, drives, kilometers per hour, and the engineered favorite-drive ratio.</p></div>
+    </div>
+    <div class="callout"><strong>Interpretation caution:</strong> Feature importance describes how the trained model uses the available variables. It does not establish that a feature causes churn.</div>
+  </div>
+</section>
+
+<section class="section" id="files">
+  <div class="container">
+    <h2>Project Files</h2>
+    <p class="section-intro">The technical work and supporting documents are available with the case study.</p>
+    <div class="file-grid">
+      <div class="card file-card"><div><h3>Technical Notebook</h3><p>Full Python workflow covering data preparation, analysis, modeling, threshold tuning, evaluation, and model persistence.</p></div><a class="btn" href="../project-files/waze/Waze_Project.ipynb" target="_blank">Open Notebook</a></div>
+      <div class="card file-card"><div><h3>Executive Summary</h3><p>Concise stakeholder-oriented summary of the business problem, methodology, results, and limitations.</p></div><a class="btn" href="../project-files/waze/Executive_Summary.pdf" target="_blank">View PDF</a></div>
+      <div class="card file-card"><div><h3>Job Proposal</h3><p>Freelancing-oriented description of the workflow and deliverables demonstrated by this project.</p></div><a class="btn" href="../project-files/waze/Job_Proposal.pdf" target="_blank">View PDF</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>Limitations & Next Steps</h2>
+    <div class="grid">
+      <div class="card"><h3>Educational dataset</h3><p>The dataset is simulated and contains mostly monthly aggregates, so performance should not be generalized to real-world Waze users.</p></div>
+      <div class="card"><h3>Limited behavioral detail</h3><p>More granular drive-level behavior, route patterns, location context, road interactions, and richer app usage data could provide additional predictive signal.</p></div>
+      <div class="card"><h3>Prediction-time availability</h3><p>A production workflow would need to verify that every predictor is available before the prediction is made and that preprocessing remains consistent.</p></div>
+      <div class="card"><h3>Future evaluation</h3><p>Fresh data should be used to assess whether the observed signal persists and to select an operating threshold from explicit business costs.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>Project Takeaway</h2>
+    <p class="section-intro">
+      This case study shows the practical difference between building a classifier and deciding how that classifier should be operated. The model produced a moderate ROC AUC, while threshold selection materially changed churn recall. The result points to both a usable analytical workflow and a clear data limitation: stronger behavioral detail would be needed to determine how far churn prediction can be pushed.
+    </p>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container">© 2026 Mounir · Data Science & Machine Learning Portfolio</div>
+</footer>
+</body>
+</html>
