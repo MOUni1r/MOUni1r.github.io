@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Automatidata | NYC Taxi Analytics | Mounir</title>
+<link rel="stylesheet" href="../assets/css/project.css">
+<link rel="stylesheet" href="../assets/css/automatidata.css">
+</head>
+<body class="automatidata-page">
+
+<nav class="nav">
+  <div class="container nav-inner">
+    <a class="logo" href="../index.html">Mounir</a>
+    <div class="nav-links">
+      <a href="#overview">Overview</a>
+      <a href="#approach">Approach</a>
+      <a href="#results">Results</a>
+      <a href="#limitations">Limitations</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero auto-hero">
+  <div class="container">
+    <span class="eyebrow">03 · Data Science Case Study</span>
+    <h1>Automatidata<br><span class="gradient">NYC Taxi Analytics</span></h1>
+    <p>
+      An end-to-end case study combining statistical testing, fare estimation,
+      generous-tipping classification, feature engineering, model comparison,
+      and error analysis on NYC yellow taxi trip data.
+    </p>
+
+    <div class="auto-tags">
+      <span class="tag">Python</span>
+      <span class="tag">Pandas</span>
+      <span class="tag">Statistical Analysis</span>
+      <span class="tag">Machine Learning</span>
+      <span class="tag">Regression</span>
+      <span class="tag">Classification</span>
+    </div>
+
+    <div class="actions">
+      <a class="btn primary auto-primary" href="#results">View Results</a>
+      <a class="btn" href="../index.html">Back to Portfolio</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section class="section" id="overview">
+  <div class="container">
+    <h2>Business Questions</h2>
+    <p class="section-intro">
+      The project treats the dataset as three complementary analytical questions,
+      rather than forcing one model to answer everything.
+    </p>
+
+    <div class="grid auto-grid">
+      <div class="card auto-card">
+        <span class="auto-number">01</span>
+        <h3>Payment & Fare</h3>
+        <p>Is there an observed difference in average fare between credit-card and cash trips?</p>
+      </div>
+      <div class="card auto-card">
+        <span class="auto-number">02</span>
+        <h3>Fare Estimation</h3>
+        <p>How well can fare amount be estimated from information represented in the dataset?</p>
+      </div>
+      <div class="card auto-card">
+        <span class="auto-number">03</span>
+        <h3>Generous Tipping</h3>
+        <p>Can trip characteristics help identify customers whose tip is at least 20%?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="approach">
+  <div class="container">
+    <h2>Analytical Workflow</h2>
+    <p class="section-intro">
+      The workflow keeps data preparation, statistical analysis, model selection,
+      final evaluation, and limitations explicit and reproducible.
+    </p>
+
+    <div class="steps">
+      <div class="step auto-step"><div class="num">1</div><div><strong>Data Quality</strong><p>22,699 rows and 18 columns were inspected. Missing values and duplicates were checked, and only clearly invalid negative fare and duration values were corrected.</p></div></div>
+      <div class="step auto-step"><div class="num">2</div><div><strong>Exploratory Analysis</strong><p>Trip timing, distance, duration, fare distributions, payment groups, correlations, and pickup/drop-off patterns were examined.</p></div></div>
+      <div class="step auto-step"><div class="num">3</div><div><strong>Statistical Testing</strong><p>Welch's two-sample t-test and a confidence interval were used to quantify the observed fare difference between payment groups.</p></div></div>
+      <div class="step auto-step"><div class="num">4</div><div><strong>Feature Engineering</strong><p>Route-level features were learned from the training partition and applied to validation and test data, with global training fallbacks for unseen or rare routes.</p></div></div>
+      <div class="step auto-step"><div class="num">5</div><div><strong>Model Comparison</strong><p>Linear Regression, Random Forest, XGBoost, and Gradient Boosting were compared for fare estimation. Three classifiers were compared for generous tipping.</p></div></div>
+      <div class="step auto-step"><div class="num">6</div><div><strong>Final Evaluation</strong><p>The selected models were evaluated on held-out test data, followed by error analysis and model-based feature interpretation.</p></div></div>
+    </div>
+
+    <div class="card auto-tools">
+      <h3>Tools & Techniques</h3>
+      <span class="tag">Python</span>
+      <span class="tag">Pandas</span>
+      <span class="tag">NumPy</span>
+      <span class="tag">Scikit-learn</span>
+      <span class="tag">XGBoost</span>
+      <span class="tag">Gradient Boosting</span>
+      <span class="tag">Statistical Testing</span>
+      <span class="tag">Feature Engineering</span>
+      <span class="tag">Error Analysis</span>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>Data Foundation</h2>
+    <p class="section-intro">A compact view of the dataset and initial quality checks.</p>
+
+    <div class="grid auto-grid">
+      <div class="card metric-card"><div class="metric">22,699</div><div class="metric-label">Rows</div></div>
+      <div class="card metric-card"><div class="metric">18</div><div class="metric-label">Columns</div></div>
+      <div class="card metric-card"><div class="metric">0</div><div class="metric-label">Missing values</div></div>
+      <div class="card metric-card"><div class="metric">0</div><div class="metric-label">Duplicate rows</div></div>
+    </div>
+
+    <div class="callout auto-callout">
+      <strong>Cleaning principle:</strong>
+      Outliers were not automatically treated as errors. Cleaning focused on values that were clearly invalid,
+      while the final regression target remained unchanged after the train/validation/test split.
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>Statistical Finding</h2>
+    <p class="section-intro">
+      The analysis examined whether payment method was associated with observed fare amount.
+    </p>
+
+    <div class="grid auto-grid">
+      <div class="card metric-card">
+        <div class="metric">$1.22</div>
+        <div class="metric-label">Observed mean difference</div>
+        <p class="small-note">Credit-card mean $13.43 vs cash mean $12.21.</p>
+      </div>
+      <div class="card metric-card">
+        <div class="metric">$0.87–$1.56</div>
+        <div class="metric-label">95% confidence interval</div>
+      </div>
+      <div class="card metric-card">
+        <div class="metric">6.8 × 10⁻¹²</div>
+        <div class="metric-label">Welch's p-value</div>
+      </div>
+      <div class="card">
+        <h3>Interpretation</h3>
+        <p>The result provides strong statistical evidence of a difference in observed group means in this sample. It is an observational association, not evidence that payment method caused the difference.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="results">
+  <div class="container">
+    <h2>Fare Estimation</h2>
+    <p class="section-intro">
+      Gradient Boosting was selected using validation MAE and then evaluated on the untouched final test set.
+    </p>
+
+    <div class="grid auto-grid">
+      <div class="card metric-card"><div class="metric">$3.55</div><div class="metric-label">Test MAE</div></div>
+      <div class="card metric-card"><div class="metric">$16.41</div><div class="metric-label">Test RMSE</div></div>
+      <div class="card metric-card"><div class="metric">0.182</div><div class="metric-label">Test R²</div></div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Model Selection</h3>
+        <p>
+          Linear Regression, Random Forest, XGBoost, and Gradient Boosting were compared.
+          Validation MAE was used as the selection criterion, keeping the final test set out of model selection.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Error Pattern</h3>
+        <p>
+          The highest-fare segment, above $16, had an MAE of approximately $9.73.
+          The notebook documents this as an observed error concentration rather than assigning an unsupported cause.
+        </p>
+      </div>
+    </div>
+
+    <div class="callout auto-callout">
+      <strong>Modeling note:</strong>
+      Route-level features were built from training data. A production pipeline should use historical or
+      out-of-fold route aggregates to avoid information from the current trip entering its own feature.
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>Generous Tipping Classification</h2>
+    <p class="section-intro">
+      A separate classification track examined whether trip characteristics could identify trips where the tip was at least 20%.
+    </p>
+
+    <div class="grid auto-grid">
+      <div class="card metric-card"><div class="metric">60.3%</div><div class="metric-label">Accuracy</div></div>
+      <div class="card metric-card"><div class="metric">45.6%</div><div class="metric-label">Precision</div></div>
+      <div class="card metric-card"><div class="metric">73.1%</div><div class="metric-label">Recall</div></div>
+      <div class="card metric-card"><div class="metric">56.2%</div><div class="metric-label">F1 Score</div></div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Test confusion matrix</h3>
+        <p>778 true positives, 286 false negatives, 927 false positives, and 1,062 true negatives.</p>
+      </div>
+      <div class="card">
+        <h3>How to read it</h3>
+        <p>The model captures a substantial share of generous tippers, but its precision is limited. The result is therefore treated as an exploratory signal rather than a high-confidence customer-level decision rule.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>Selected Analysis</h2>
+    <p class="section-intro">Visual outputs showing the exploratory and modeling workflow.</p>
+
+    <div class="auto-gallery">
+      <figure class="auto-image-card">
+        <img src="../project-files/automatidata/images/fare_vs_distance.png" alt="Fare versus trip distance">
+        <figcaption><strong>Fare vs. distance</strong><span>Exploratory relationship between trip distance and fare amount.</span></figcaption>
+      </figure>
+      <figure class="auto-image-card">
+        <img src="../project-files/automatidata/images/correlation_matrix.png" alt="Correlation matrix">
+        <figcaption><strong>Correlation structure</strong><span>Selected numerical relationships examined during EDA.</span></figcaption>
+      </figure>
+      <figure class="auto-image-card">
+        <img src="../project-files/automatidata/images/regression_actual_vs_predicted.png" alt="Actual versus predicted fare">
+        <figcaption><strong>Actual vs. predicted fare</strong><span>Held-out regression performance.</span></figcaption>
+      </figure>
+      <figure class="auto-image-card">
+        <img src="../project-files/automatidata/images/regression_residual_diagnostics.png" alt="Regression residual diagnostics">
+        <figcaption><strong>Residual diagnostics</strong><span>Inspection of where prediction errors concentrate.</span></figcaption>
+      </figure>
+      <figure class="auto-image-card">
+        <img src="../project-files/automatidata/images/tipping_confusion_matrix.png" alt="Tipping confusion matrix">
+        <figcaption><strong>Tipping confusion matrix</strong><span>Held-out classification results.</span></figcaption>
+      </figure>
+      <figure class="auto-image-card">
+        <img src="../project-files/automatidata/images/regression_feature_importance.png" alt="Regression feature importance">
+        <figcaption><strong>Regression feature importance</strong><span>Model-based feature importance, not causal effect.</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="limitations">
+  <div class="container">
+    <h2>Limitations & Next Steps</h2>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Educational dataset</h3>
+        <p>The dataset is educational and should not be treated as representative evidence about the full NYC taxi market.</p>
+      </div>
+      <div class="card">
+        <h3>Temporal validation</h3>
+        <p>The current split is random rather than time-based. A production study should test performance across time.</p>
+      </div>
+      <div class="card">
+        <h3>Feature construction</h3>
+        <p>Production route aggregates should be built from historical or out-of-fold information.</p>
+      </div>
+      <div class="card">
+        <h3>Prediction-time availability</h3>
+        <p>Fields used by the tipping model would need an explicit availability check before operational use.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>Project Takeaway</h2>
+    <p class="section-intro">
+      Automatidata demonstrates a broader data-science workflow than a single predictive model:
+      statistical testing to quantify an observed difference, regression for fare estimation,
+      classification for a second business question, and explicit error and limitation analysis.
+    </p>
+  </div>
+</section>
+
+<section class="section auto-files">
+  <div class="container">
+    <h2>Project Files</h2>
+    <p class="section-intro">Explore the technical notebook and supporting portfolio deliverables.</p>
+
+    <div class="grid">
+      <div class="card file-card">
+        <span class="file-badge">NOTEBOOK</span>
+        <h3>Technical Notebook</h3>
+        <p>Full executed workflow covering preparation, EDA, statistical testing, feature engineering, model selection, evaluation, and interpretation.</p>
+        <a class="btn primary auto-primary" href="https://github.com/MOUni1r/MOUni1r.github.io/blob/main/project-files/automatidata/Automatidata_Project.ipynb" target="_blank">View Notebook</a>
+      </div>
+
+      <div class="card file-card">
+        <span class="file-badge summary-badge">PDF</span>
+        <h3>Executive Summary</h3>
+        <p>A concise summary of the business questions, methodology, key results, limitations, and interpretation.</p>
+        <a class="btn" href="../project-files/automatidata/Executive_Summary.pdf" target="_blank">Open Summary</a>
+      </div>
+
+      <div class="card file-card">
+        <span class="file-badge proposal-badge">PDF</span>
+        <h3>Job Proposal</h3>
+        <p>A freelancing-focused presentation of the analytical workflow and deliverables.</p>
+        <a class="btn" href="../project-files/automatidata/Job_Proposal.pdf" target="_blank">Open Proposal</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div>© 2026 Mounir · Data Science & Machine Learning Portfolio</div>
+  </div>
+</footer>
+
+</body>
+</html>
