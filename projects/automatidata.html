@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Automatidata | NYC Taxi Data Science Case Study</title>
+<style>
+:root{--bg:#081018;--panel:#0e1822;--panel2:#111e2a;--text:#eef4f8;--muted:#9baab7;--accent:#52b6ff;--accent2:#7dd3fc;--border:rgba(255,255,255,.09)}
+*{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at 85% 5%,rgba(82,182,255,.13),transparent 28%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.6}
+a{color:inherit;text-decoration:none}.wrap{width:min(1120px,92%);margin:auto}.nav{height:72px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}.brand{font-weight:800;letter-spacing:.04em}.back{color:var(--muted);font-size:.92rem}.hero{padding:82px 0 62px}.eyebrow{color:var(--accent2);font-size:.78rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.hero h1{font-size:clamp(2.5rem,6vw,5rem);line-height:1.02;margin:14px 0 20px;max-width:900px}.hero p{max-width:760px;color:var(--muted);font-size:1.08rem}.tags{display:flex;flex-wrap:wrap;gap:9px;margin:26px 0}.tag{border:1px solid var(--border);background:rgba(255,255,255,.035);padding:6px 11px;border-radius:999px;color:#cfe8f7;font-size:.82rem}.buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn{padding:11px 17px;border-radius:10px;border:1px solid var(--border);background:var(--panel);font-weight:700}.btn.primary{background:var(--accent);color:#061018;border-color:var(--accent)}section{padding:54px 0;border-top:1px solid var(--border)}h2{font-size:1.9rem;margin:0 0 18px}h3{margin:0 0 10px}.lead{color:var(--muted);max-width:800px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--border);border-radius:16px;padding:22px}.metric{font-size:2rem;font-weight:850;color:var(--accent2)}.label{color:var(--muted);font-size:.9rem}.result{display:flex;flex-direction:column;gap:5px}.card p,.card li{color:var(--muted)}ul{padding-left:20px}.img-card{padding:12px}.img-card img{display:block;width:100%;border-radius:10px;background:#071018}.caption{padding:10px 5px 2px;color:var(--muted);font-size:.86rem}.files{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.file-title{font-weight:800;margin-bottom:7px}.footer{padding:40px 0 70px;color:var(--muted);font-size:.9rem}@media(max-width:800px){.grid,.grid2,.files{grid-template-columns:1fr}.hero{padding-top:55px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="nav">
+  <a class="brand" href="../index.html">M.</a>
+  <a class="back" href="../index.html">← Back to Projects</a>
+</nav>
+
+<header class="hero">
+  <div class="eyebrow">Data Science Case Study</div>
+  <h1>Automatidata</h1>
+  <p>NYC taxi analysis combining statistical testing, fare estimation, classification, model diagnostics, and business interpretation.</p>
+  <div class="tags">
+    <span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Scikit-learn</span>
+    <span class="tag">Statistical Analysis</span><span class="tag">Machine Learning</span><span class="tag">Regression</span><span class="tag">Classification</span>
+  </div>
+  <div class="buttons">
+    <a class="btn primary" href="https://github.com/M0Un1r/M0Un1r.github.io/blob/main/project-files/automatidata/Automatidata_Project.ipynb" target="_blank">View Notebook</a>
+    <a class="btn" href="../project-files/automatidata/Executive_Summary.pdf" target="_blank">Executive Summary</a>
+    <a class="btn" href="../project-files/automatidata/Job_Proposal.pdf" target="_blank">Job Proposal</a>
+  </div>
+</header>
+
+<section>
+<h2>Project Overview</h2>
+<p class="lead">The case study treats the dataset as three connected analytical problems rather than forcing everything into one model.</p>
+<div class="grid">
+  <div class="card"><h3>01 · Payment Method</h3><p>Test whether observed fare means differ between credit-card and cash payment groups.</p></div>
+  <div class="card"><h3>02 · Fare Estimation</h3><p>Compare regression models and estimate taxi fares from trip-level information.</p></div>
+  <div class="card"><h3>03 · Generous Tipping</h3><p>Use classification to identify trips associated with generous tipping.</p></div>
+</div>
+</section>
+
+<section>
+<h2>Dataset & Data Quality</h2>
+<div class="grid">
+  <div class="card result"><div class="metric">22,699</div><div class="label">Rows</div></div>
+  <div class="card result"><div class="metric">18</div><div class="label">Columns</div></div>
+  <div class="card result"><div class="metric">0</div><div class="label">Missing values / duplicate rows</div></div>
+</div>
+<p class="lead" style="margin-top:20px">Initial checks identified negative values in several monetary fields and one negative trip duration. The notebook documents the cleaning rules and verifies the cleaned state.</p>
+</section>
+
+<section>
+<h2>Statistical Analysis</h2>
+<div class="grid2">
+  <div class="card"><h3>Payment Method & Fare</h3><p>Welch's two-sample test was used to compare observed mean fares between credit-card and cash groups.</p><ul><li>Mean difference: ≈ $1.22</li><li>95% CI: ≈ $0.87 to $1.56</li><li>p-value: ≈ 6.8 × 10⁻¹²</li></ul></div>
+  <div class="card"><h3>Interpretation</h3><p>The result provides statistical evidence of different observed mean fares in this sample. It does not establish causation because payment method was not randomly assigned.</p><p>A positive-fare sensitivity analysis produced a very similar estimate.</p></div>
+</div>
+</section>
+
+<section>
+<h2>Fare Estimation</h2>
+<div class="grid">
+  <div class="card result"><div class="metric">$3.55</div><div class="label">Test MAE</div></div>
+  <div class="card result"><div class="metric">$16.41</div><div class="label">Test RMSE</div></div>
+  <div class="card result"><div class="metric">0.182</div><div class="label">Test R²</div></div>
+</div>
+<div class="card" style="margin-top:16px"><h3>Model selection</h3><p>Linear Regression, Random Forest, XGBoost, and Gradient Boosting were compared. Gradient Boosting was selected using validation MAE, then evaluated on the untouched test set.</p><p>The highest-fare group, above $16, had a substantially larger MAE of approximately $9.73. The notebook treats this as an observed error pattern rather than assuming its underlying cause.</p></div>
+</section>
+
+<section>
+<h2>Generous Tipping Classification</h2>
+<div class="grid">
+  <div class="card result"><div class="metric">60.3%</div><div class="label">Accuracy</div></div>
+  <div class="card result"><div class="metric">73.1%</div><div class="label">Recall</div></div>
+  <div class="card result"><div class="metric">56.2%</div><div class="label">F1</div></div>
+</div>
+<div class="grid2" style="margin-top:16px">
+  <div class="card"><h3>Final test metrics</h3><ul><li>Precision: 0.456</li><li>Recall: 0.731</li><li>F1: 0.562</li><li>ROC AUC: 0.645</li></ul></div>
+  <div class="card"><h3>Confusion matrix</h3><ul><li>True positives: 778</li><li>False negatives: 286</li><li>False positives: 927</li><li>True negatives: 1,062</li></ul></div>
+</div>
+</section>
+
+<section>
+<h2>Selected Analysis</h2>
+<div class="grid2">
+  <div class="card img-card"><img src="../project-files/automatidata/images/fare_vs_distance.png" alt="Fare versus trip distance"><div class="caption">Fare amount vs. trip distance</div></div>
+  <div class="card img-card"><img src="../project-files/automatidata/images/correlation_matrix.png" alt="Correlation matrix"><div class="caption">Correlation matrix</div></div>
+  <div class="card img-card"><img src="../project-files/automatidata/images/regression_actual_vs_predicted.png" alt="Actual versus predicted fare"><div class="caption">Regression: actual vs. predicted fare</div></div>
+  <div class="card img-card"><img src="../project-files/automatidata/images/regression_residual_diagnostics.png" alt="Regression residual diagnostics"><div class="caption">Regression residual diagnostics</div></div>
+  <div class="card img-card"><img src="../project-files/automatidata/images/tipping_confusion_matrix.png" alt="Tipping confusion matrix"><div class="caption">Generous-tipping confusion matrix</div></div>
+  <div class="card img-card"><img src="../project-files/automatidata/images/regression_feature_importance.png" alt="Regression feature importance"><div class="caption">Regression model feature importance</div></div>
+</div>
+</section>
+
+<section>
+<h2>Key Takeaways</h2>
+<div class="grid">
+  <div class="card"><h3>Statistical signal</h3><p>The observed fare difference between payment groups remains similar in the positive-fare sensitivity analysis.</p></div>
+  <div class="card"><h3>Model behavior</h3><p>Fare prediction error is concentrated more heavily in the highest-fare segment.</p></div>
+  <div class="card"><h3>Practical caution</h3><p>The tipping model provides an exploratory signal and should not be treated as a high-confidence customer-level decision rule.</p></div>
+</div>
+</section>
+
+<section>
+<h2>Limitations & Next Steps</h2>
+<div class="card">
+<ul>
+<li>The dataset is educational.</li>
+<li>The train/validation/test split is random rather than time-based.</li>
+<li>Production route aggregates should use historical or out-of-fold construction where appropriate.</li>
+<li>Prediction-time availability of tipping-related fields must be verified before operational use.</li>
+<li>Fresh representative data and production validation would be required before deployment.</li>
+</ul>
+</div>
+</section>
+
+<section>
+<h2>Project Files</h2>
+<div class="files">
+  <div class="card"><div class="file-title">Technical Notebook</div><p>Full executed data science workflow.</p><a class="btn primary" href="https://github.com/M0Un1r/M0Un1r.github.io/blob/main/project-files/automatidata/Automatidata_Project.ipynb" target="_blank">View Notebook</a></div>
+  <div class="card"><div class="file-title">Executive Summary</div><p>Concise technical and business summary.</p><a class="btn" href="../project-files/automatidata/Executive_Summary.pdf" target="_blank">Open PDF</a></div>
+  <div class="card"><div class="file-title">Job Proposal</div><p>Freelance-oriented description of the approach and deliverables.</p><a class="btn" href="../project-files/automatidata/Job_Proposal.pdf" target="_blank">Open PDF</a></div>
+</div>
+</section>
+
+<div class="footer">Automatidata portfolio case study · Educational dataset · Built as a data science project demonstration</div>
+</div>
+</body>
+</html>
