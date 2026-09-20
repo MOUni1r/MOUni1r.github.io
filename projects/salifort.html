@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salifort Motors | Employee Turnover Prediction</title>
+<link rel="stylesheet" href="../assets/css/project.css">
+<link rel="stylesheet" href="../assets/css/salifort.css">
+</head>
+<body class="salifort-page">
+<header class="project-nav">
+  <a class="brand" href="https://mouni1r.github.io/">Mounir</a>
+  <nav>
+    <a href="#overview">Overview</a>
+    <a href="#analysis">Analysis</a>
+    <a href="#results">Results</a>
+    <a href="#limitations">Limitations</a>
+    <a class="nav-cta" href="https://mouni1r.github.io/">Back to Portfolio</a>
+  </nav>
+</header>
+
+<main>
+<section class="project-hero" id="overview">
+  <div class="hero-copy">
+    <span class="eyebrow">04 · DATA SCIENCE CASE STUDY</span>
+    <h1>Salifort Motors<br><span>Employee Turnover Prediction</span></h1>
+    <p>Analyzing employee turnover patterns and building a machine-learning workflow to identify predictive signals for retention-focused HR investigation.</p>
+    <div class="tags"><span>Python</span><span>Machine Learning</span><span>Classification</span><span>HR Analytics</span></div>
+  </div>
+  <div class="hero-stat-card">
+    <div><strong>14,999</strong><span>Employee records</span></div>
+    <div><strong>96.2%</strong><span>Holdout accuracy</span></div>
+    <div><strong>90.4%</strong><span>Turnover recall</span></div>
+    <div><strong>93.8%</strong><span>AUC</span></div>
+  </div>
+</section>
+
+<section class="section" id="analysis">
+  <div class="section-heading"><span>01</span><div><h2>Business Questions</h2><p>What patterns are associated with employee turnover, and which variables are most useful for identifying higher-risk cases?</p></div></div>
+  <div class="question-grid">
+    <article><b>01</b><h3>Understand turnover</h3><p>Explore workload, projects, tenure, evaluation, salary and department patterns associated with employees leaving.</p></article>
+    <article><b>02</b><h3>Build a baseline</h3><p>Use logistic regression to establish an interpretable reference point before moving to tree-based models.</p></article>
+    <article><b>03</b><h3>Improve prediction</h3><p>Engineer a compact workload signal and evaluate a Random Forest on the saved holdout data.</p></article>
+  </div>
+</section>
+
+<section class="section workflow">
+  <div class="section-heading"><span>02</span><div><h2>Analytical Workflow</h2><p>A complete path from data quality to model interpretation and business recommendations.</p></div></div>
+  <div class="steps"><div><i>01</i><b>Data Quality</b><small>Structure, missing values, duplicates</small></div><div><i>02</i><b>EDA</b><small>Turnover patterns and relationships</small></div><div><i>03</i><b>Feature Engineering</b><small>Overworked workload indicator</small></div><div><i>04</i><b>Modeling</b><small>Logistic Regression + Random Forest</small></div><div><i>05</i><b>Interpretation</b><small>Feature importance and HR actions</small></div></div>
+</section>
+
+<section class="section data-section">
+  <div class="section-heading"><span>03</span><div><h2>Data Foundation</h2><p>The source contains 14,999 records and 10 variables. No missing values were found, while 3,008 duplicate rows were identified and removed before the main analysis.</p></div></div>
+  <div class="metric-row"><div><strong>14,999</strong><span>Original records</span></div><div><strong>10</strong><span>Variables</span></div><div><strong>0</strong><span>Missing values</span></div><div><strong>3,008</strong><span>Duplicates removed</span></div></div>
+</section>
+
+<section class="section visual-section">
+  <div class="section-heading"><span>04</span><div><h2>Selected Analysis</h2><p>Visual evidence used to understand the structure of turnover before modeling.</p></div></div>
+  <div class="visual-grid">
+    <figure><img src="../project-files/salifort/images/correlation_heatmap.png"><figcaption><h3>Correlation Structure</h3><p>Relationships among the main numerical variables used during exploratory analysis.</p></figcaption></figure>
+    <figure><img src="../project-files/salifort/images/turnover_by_department.png"><figcaption><h3>Turnover by Department</h3><p>Counts of employees who stayed versus left across departments.</p></figcaption></figure>
+    <figure><img src="../project-files/salifort/images/workload_vs_evaluation.png"><figcaption><h3>Workload and Evaluation</h3><p>Monthly hours plotted against last evaluation score, with turnover status shown in the analysis.</p></figcaption></figure>
+  </div>
+</section>
+
+<section class="section results-section" id="results">
+  <div class="section-heading"><span>05</span><div><h2>Model Results</h2><p>The logistic regression baseline was substantially less effective at identifying employees who left. The feature-engineered Random Forest produced the stronger saved holdout result.</p></div></div>
+  <div class="result-grid">
+    <div class="result-card"><span>Random Forest</span><strong>96.2%</strong><small>Accuracy</small></div>
+    <div class="result-card"><span>Random Forest</span><strong>90.4%</strong><small>Recall</small></div>
+    <div class="result-card"><span>Random Forest</span><strong>88.7%</strong><small>F1-score</small></div>
+    <div class="result-card"><span>Random Forest</span><strong>93.8%</strong><small>AUC</small></div>
+  </div>
+  <div class="model-note"><b>Why recall matters here</b><p>For a retention-screening workflow, missing employees who later leave can be costly. The model therefore provides a useful signal for prioritizing human follow-up, while the final operating threshold would need to be defined from the real business costs of false positives and false negatives.</p></div>
+</section>
+
+<section class="section visual-section">
+  <div class="section-heading"><span>06</span><div><h2>Final Model Interpretation</h2><p>The saved feature-importance analysis highlights the variables the Random Forest relied on most heavily.</p></div></div>
+  <div class="visual-grid two">
+    <figure><img src="../project-files/salifort/images/random_forest_feature_importance.png"><figcaption><h3>Random Forest Feature Importance</h3><p>Last evaluation, project load, tenure and the engineered workload indicator are among the strongest predictive signals.</p></figcaption></figure>
+    <figure><img src="../project-files/salifort/images/random_forest_confusion_matrix.png"><figcaption><h3>Holdout Confusion Matrix</h3><p>Final saved holdout classification results for the feature-engineered Random Forest.</p></figcaption></figure>
+  </div>
+</section>
+
+<section class="section interpretation">
+  <div class="section-heading"><span>07</span><div><h2>Business Interpretation</h2><p>The model identifies areas worth investigating, not automatic explanations for why an employee leaves.</p></div></div>
+  <div class="insight-list">
+    <article><span>01</span><div><h3>Workload</h3><p>Review project allocation and long working hours for employees carrying heavier workloads.</p></div></article>
+    <article><span>02</span><div><h3>Career development</h3><p>Examine promotion and career-development patterns alongside tenure.</p></div></article>
+    <article><span>03</span><div><h3>Performance context</h3><p>Investigate employees with strong evaluation scores who also work very long hours.</p></div></article>
+    <article><span>04</span><div><h3>Human review</h3><p>Use model outputs to prioritize follow-up rather than automate employment decisions.</p></div></article>
+  </div>
+</section>
+
+<section class="section" id="limitations">
+  <div class="section-heading"><span>08</span><div><h2>Limitations & Next Steps</h2><p>The results are useful as a case study, but several constraints matter before any real deployment.</p></div></div>
+  <div class="limit-grid"><div><h3>Dataset</h3><p>Educational dataset rather than a real workforce. Fresh, representative data is needed for validation.</p></div><div><h3>Evaluation</h3><p>The notebook reused a holdout workflow across iterative modeling rounds, so the reported metrics are not an independent production estimate.</p></div><div><h3>Decision threshold</h3><p>A production threshold should be chosen from the actual business costs of false positives and false negatives.</p></div></div>
+</section>
+
+<section class="section files-section">
+  <div class="section-heading"><span>09</span><div><h2>Project Files</h2><p>Explore the technical work, business summary, and freelancing-focused proposal.</p></div></div>
+  <div class="file-grid">
+    <article><div class="file-icon notebook">NB</div><h3>Technical Notebook</h3><p>Full Jupyter Notebook covering data quality, EDA, feature engineering, modeling and interpretation.</p><a class="btn primary" href="https://github.com/MOUni1r/MOUni1r.github.io/blob/main/project-files/salifort/Salifort_Motors_Project.ipynb" target="_blank">View Notebook</a></article>
+    <article><div class="file-icon pdf">PDF</div><h3>Executive Summary</h3><p>A concise business-facing summary of the problem, methodology, results and limitations.</p><a class="btn" href="../project-files/salifort/Executive_Summary.pdf" target="_blank">Open Summary</a></article>
+    <article><div class="file-icon proposal">P</div><h3>Job Proposal</h3><p>A freelancing-focused proposal showing how the case study translates into client work.</p><a class="btn" href="../project-files/salifort/Job_Proposal.pdf" target="_blank">Open Proposal</a></article>
+  </div>
+</section>
+</main>
+<footer class="project-footer"><span>Salifort Motors · Employee Turnover Prediction</span><a href="https://mouni1r.github.io/">Back to Portfolio ↑</a></footer>
+</body>
+</html>
