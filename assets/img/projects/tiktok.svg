@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff3d81"/><stop offset=".55" stop-color="#7b61ff"/><stop offset="1" stop-color="#19e5ff"/></linearGradient><filter id="b"><feGaussianBlur stdDeviation="45"/></filter></defs>
+<rect width="1200" height="760" fill="#080a12"/><circle cx="880" cy="330" r="250" fill="#ff3d81" opacity=".18" filter="url(#b)"/><circle cx="380" cy="500" r="220" fill="#2de3ff" opacity=".13" filter="url(#b)"/>
+<g opacity=".18" stroke="#fff"><path d="M0 120h1200M0 240h1200M0 360h1200M0 480h1200M0 600h1200"/><path d="M120 0v760M240 0v760M360 0v760M480 0v760M600 0v760M720 0v760M840 0v760M960 0v760M1080 0v760"/></g>
+<rect x="700" y="105" width="300" height="540" rx="42" fill="#0d1220" stroke="#ff3d81" stroke-width="3"/><rect x="730" y="150" width="240" height="450" rx="24" fill="#11192a"/>
+<circle cx="850" cy="265" r="76" fill="url(#g)" opacity=".9"/><path d="M842 211v112c0 24-20 43-44 43-18 0-33-12-33-27 0-18 16-31 38-31 7 0 13 1 19 4v-89l75-16v80" fill="none" stroke="#fff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="#fff"><rect x="770" y="425" width="150" height="10" rx="5" opacity=".85"/><rect x="770" y="451" width="110" height="8" rx="4" opacity=".45"/><rect x="770" y="490" width="180" height="8" rx="4" opacity=".25"/></g>
+<g stroke="#ff3d81" fill="none" stroke-width="3"><path d="M120 590 C250 480 350 520 470 410 S650 250 780 300"/><path d="M120 620 C270 550 350 590 490 500 S660 360 820 390"/></g>
+<g fill="#fff"><circle cx="470" cy="410" r="7"/><circle cx="780" cy="300" r="7"/><circle cx="490" cy="500" r="6"/></g>
+<text x="90" y="120" fill="#fff" font-family="Arial,sans-serif" font-size="52" font-weight="700">CLAIMS</text><text x="90" y="175" fill="#ff5d97" font-family="Arial,sans-serif" font-size="52" font-weight="700">CLASSIFICATION</text><text x="90" y="215" fill="#91a0b4" font-family="monospace" font-size="16">TEXT • ENGAGEMENT • MACHINE LEARNING</text>
+</svg>
