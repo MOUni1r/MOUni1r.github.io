@@ -37,3 +37,50 @@ a{color:inherit;text-decoration:none}img{max-width:100%;display:block}.site-shel
 .footer{background:#17324d!important;color:#d3dee5!important;border-top:0!important;position:relative;z-index:3;width:100%!important;max-width:none!important;margin:0!important;padding:28px max(20px,calc((100% - 1180px)/2))!important}
 @media(max-width:900px){.decision-grid{grid-template-columns:1fr}.hero-inner{gap:35px}.project-grid{gap:18px}.project-art{height:290px}}
 @media(max-width:560px){.decision-band{padding:82px 0}.project-art{height:245px}.footer{padding:24px 20px!important}.nav-links.open{display:flex;position:absolute;top:60px;left:0;right:0;flex-direction:column;align-items:flex-start;gap:12px;padding:18px;background:rgba(251,248,241,.97);border:1px solid var(--line);border-radius:22px;box-shadow:0 20px 50px rgba(23,50,77,.13)}}
+
+/* Small chemistry layer: subtle enough to support the identity without competing with the portrait. */
+.hero-copy{max-width:650px}
+.hero-visual{isolation:isolate}
+.hero-data-backdrop{opacity:.55;filter:saturate(.72)}
+.hero-photo-wrap{right:18px;top:20px;width:248px;z-index:8}
+.analysis-card{left:0;bottom:18px;width:67%;z-index:4}
+.chemistry-orbit{position:absolute;z-index:2;pointer-events:none;border:1px solid rgba(201,147,76,.34);border-radius:50%;opacity:.78}
+.chemistry-orbit:before,.chemistry-orbit:after{content:"";position:absolute;border-radius:50%;background:var(--gold);box-shadow:0 0 0 5px rgba(201,147,76,.08)}
+.chemistry-orbit:before{width:7px;height:7px;left:10%;top:18%}
+.chemistry-orbit:after{width:5px;height:5px;right:13%;bottom:15%;background:var(--blue)}
+.chemistry-orbit span{position:absolute;width:6px;height:6px;border-radius:50%;background:var(--blue);left:48%;top:-3px}
+.chemistry-orbit i{position:absolute;font-style:normal;font:700 9px/1 Manrope,sans-serif;letter-spacing:.08em;color:#65798a;background:rgba(251,248,241,.72);padding:5px 7px;border-radius:999px;backdrop-filter:blur(8px)}
+.orbit-one{width:145px;height:145px;right:-5px;top:18px;animation:orbitDrift 9s ease-in-out infinite}
+.orbit-one i{right:-22px;top:47px}
+.orbit-two{width:92px;height:92px;left:-10px;bottom:74px;animation:orbitDrift 7s ease-in-out infinite reverse;opacity:.55}
+.orbit-two i{left:-18px;bottom:4px}
+.chemistry-node{position:absolute;z-index:2;color:rgba(49,90,120,.62);font-family:Georgia,serif;font-size:25px;pointer-events:none;animation:chemFloat 6s ease-in-out infinite}
+.node-one{right:4px;bottom:190px;transform:rotate(-10deg)}
+.node-two{left:76px;top:62px;font-size:34px;opacity:.45;animation-delay:-2s}
+@keyframes orbitDrift{0%,100%{transform:translate3d(0,0,0) rotate(0)}50%{transform:translate3d(6px,-8px,0) rotate(7deg)}}
+@keyframes chemFloat{0%,100%{transform:translateY(0) rotate(-10deg)}50%{transform:translateY(-9px) rotate(4deg)}}
+
+@media(max-width:900px){
+  .hero-photo-wrap{right:10px;top:14px;width:205px}
+  .analysis-card{left:0;bottom:8px;width:70%}
+  .orbit-one{right:0;top:5px;width:125px;height:125px}
+  .orbit-two{left:-2px;bottom:60px}
+}
+@media(max-width:560px){
+  .hero-visual{min-height:500px}
+  .hero-photo-wrap{right:4px;top:8px;width:160px}
+  .hero-photo{border-width:6px;border-radius:24px}
+  .analysis-card{left:0;bottom:8px;width:76%;padding:11px;border-radius:22px}
+  .screen{padding:14px}
+  .chart{height:125px;gap:7px;padding:16px 10px 7px}
+  .float-chip{z-index:10}
+  .chip-a{right:0;bottom:105px}
+  .chip-b{left:0;top:96px}
+  .chip-c{left:70px;bottom:-2px}
+  .orbit-one{width:92px;height:92px;right:-5px;top:0}
+  .orbit-one i{right:-20px;top:35px}
+  .orbit-two{width:70px;height:70px;left:-5px;bottom:80px}
+  .chemistry-node{font-size:21px}
+  .node-one{right:0;bottom:175px}
+  .node-two{left:48px;top:70px}
+}
